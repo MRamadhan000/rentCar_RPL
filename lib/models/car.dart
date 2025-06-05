@@ -9,6 +9,7 @@ class Car {
   final int passengers;
   final IconData fuelIcon;
   final int pricePerDay;
+  final int fuelAmount;  
 
   Car({
     required this.name,
@@ -18,6 +19,7 @@ class Car {
     required this.passengers,
     required this.fuelIcon,
     required this.pricePerDay,
+    required this.fuelAmount,
   });
 
   factory Car.fromJson(Map<String, dynamic> json) {
@@ -29,6 +31,7 @@ class Car {
       passengers: json['passengers'],
       fuelIcon: _mapStringToIconData(json['fuelIcon']),
       pricePerDay: json['pricePerDay'],
+      fuelAmount: json['fuelAmount'] ?? 0,
     );
   }
 

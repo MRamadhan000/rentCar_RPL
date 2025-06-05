@@ -6,6 +6,7 @@ import './widget/search_section.dart';
 import './models/car.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
+import './utils/app_colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -55,7 +56,7 @@ class _CarRentalPageState extends State<CarRentalPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.background,
       appBar: PakrentAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40),
