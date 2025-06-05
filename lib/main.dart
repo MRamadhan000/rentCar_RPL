@@ -55,6 +55,7 @@ class _CarRentalPageState extends State<CarRentalPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: PakrentAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40),
