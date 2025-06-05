@@ -22,7 +22,22 @@ class PickupSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final locationsList = ['Semarang', 'Bandung', 'Jakarta', 'Surabaya'];
+    final locationsList = [
+      'Semarang',
+      'Bandung',
+      'Jakarta',
+      'Surabaya',
+      'Yogyakarta',
+      'Malang',
+      'Denpasar',
+      'Makassar',
+      'Medan',
+      'Balikpapan',
+      'Padang',
+      'Palembang',
+      'Pontianak',
+      'Manado',
+    ];
 
     String formatDate(DateTime? dt) {
       if (dt == null) return '-';
@@ -54,72 +69,75 @@ class PickupSection extends StatelessWidget {
     const double valueFontSize = 10;
     const double arrow_size = 15;
 
-    Widget _buildLocationDropdown() {
+    Widget _buildLocationPicker(BuildContext context) {
       return Expanded(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Locations',
+              'Location',
               style: TextStyle(
                 fontSize: labelFontSize,
                 color: AppColors.black,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            DropdownButtonHideUnderline(
-              child: DropdownButton<String>(
-                isExpanded: true,
-                icon: const Icon(Icons.keyboard_arrow_down, size: arrow_size),
-                items: [
-                  const DropdownMenuItem(
-                    value: '-',
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text('-', style: TextStyle(fontSize: valueFontSize)),
+            const SizedBox(height: 6),
+            GestureDetector(
+              onTap: () async {
+                final selected = await showModalBottomSheet<String>(
+                  context: context,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(16),
                     ),
                   ),
-                  ...locationsList.map(
-                    (loc) => DropdownMenuItem(
-                      value: loc,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(loc, style: TextStyle(fontSize: valueFontSize)),
-                      ),
-                    ),
-                  ),
-                ],
-                onChanged: (val) {
-                  if (val == '-') {
-                    onChangeLocation?.call(null);
-                  } else {
-                    onChangeLocation?.call(val);
-                  }
-                },
-                style: TextStyle(
-                  fontSize: valueFontSize,
-                  color: location == null || location == '-'
-                      ? Colors.grey.shade600
-                      : AppColors.black.withOpacity(0.6),
-                  overflow: TextOverflow.ellipsis,
-                ),
-                selectedItemBuilder: (context) {
-                  return ['-', ...locationsList].map((val) {
-                    return Align(
-                      alignment: Alignment.centerLeft,
+                  builder: (BuildContext ctx) {
+                    return ListView(
+                      shrinkWrap: true,
+                      children: [
+                        ListTile(
+                          title: const Text('-'),
+                          onTap: () => Navigator.pop(ctx, '-'),
+                        ),
+                        ...locationsList.map(
+                          (loc) => ListTile(
+                            title: Text(loc),
+                            onTap: () => Navigator.pop(ctx, loc),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                );
+
+                if (selected == '-') {
+                  onChangeLocation?.call(null);
+                } else if (selected != null) {
+                  onChangeLocation?.call(selected);
+                }
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 6),
+                child: Row(
+                  children: [
+                    Expanded(
                       child: Text(
-                        val,
+                        location ?? '-',
                         style: TextStyle(
                           fontSize: valueFontSize,
-                          color: val == '-' || location == null
-                              ? Colors.grey.shade600
-                              : AppColors.black.withOpacity(0.6),
+                          color:
+                              location == null
+                                  ? Colors.grey.shade600
+                                  : AppColors.black.withOpacity(0.6),
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
-                    );
-                  }).toList();
-                },
+                    ),
+                    const SizedBox(width: 4),
+                    const Icon(Icons.keyboard_arrow_down, size: arrow_size),
+                  ],
+                ),
               ),
             ),
           ],
@@ -151,7 +169,8 @@ class PickupSection extends StatelessWidget {
                       formatDate(date),
                       style: TextStyle(
                         fontSize: valueFontSize - 3,
-                        color: date == null ? Colors.grey.shade600 : Colors.black,
+                        color:
+                            date == null ? Colors.grey.shade600 : Colors.black,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -190,7 +209,8 @@ class PickupSection extends StatelessWidget {
                       formatTime(time),
                       style: TextStyle(
                         fontSize: valueFontSize,
-                        color: time == null ? Colors.grey.shade600 : Colors.black,
+                        color:
+                            time == null ? Colors.grey.shade600 : Colors.black,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -212,11 +232,7 @@ class PickupSection extends StatelessWidget {
         color: AppColors.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 8,
-            offset: Offset(0, 4),
-          ),
+          BoxShadow(color: Colors.black12, blurRadius: 8, offset: Offset(0, 4)),
         ],
       ),
       child: Column(
@@ -228,15 +244,28 @@ class PickupSection extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           IntrinsicHeight(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                _buildLocationDropdown(),
-                const VerticalDivider(thickness: 0.8, width: 20, color: Colors.grey),
-                _buildDatePicker(),
-                const VerticalDivider(thickness: 0.8, width: 20, color: Colors.grey),
-                _buildTimePicker(),
-              ],
+            child: Container(
+              alignment: Alignment.center,
+              child: Row(
+                mainAxisSize:
+                    MainAxisSize.min, // penting agar lebar Row mengikuti konten
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _buildLocationPicker(context),
+                  const VerticalDivider(
+                    thickness: 0.8,
+                    width: 20,
+                    color: Colors.grey,
+                  ),
+                  _buildDatePicker(),
+                  const VerticalDivider(
+                    thickness: 0.8,
+                    width: 20,
+                    color: Colors.grey,
+                  ),
+                  _buildTimePicker(),
+                ],
+              ),
             ),
           ),
         ],
