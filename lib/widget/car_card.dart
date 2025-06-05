@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/car.dart'; // import model Car
 import '../utils/app_colors.dart';
+import 'package:intl/intl.dart';
 
 class CarCard extends StatelessWidget {
   final Car car;
@@ -12,6 +13,11 @@ class CarCard extends StatelessWidget {
     // Hitung diskon (contoh: 15%)
     final int discountAmount = (car.pricePerDay * 0.15).round();
     final int discountedPrice = car.pricePerDay - discountAmount;
+    final formatter = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp ',
+      decimalDigits: 0,
+    );
 
     return Card(
       color: Colors.white,
@@ -69,9 +75,7 @@ class CarCard extends StatelessWidget {
                       Icon(
                         car.isManual ? Icons.settings : Icons.settings_suggest,
                         size: 18,
-                        color:
-                            AppColors
-                                .secondaryBlue,
+                        color: AppColors.secondaryBlue,
                       ),
                       SizedBox(width: 4),
                       Text(
@@ -91,7 +95,11 @@ class CarCard extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.people, size: 18, color: AppColors.secondaryBlue),
+                      Icon(
+                        Icons.people,
+                        size: 18,
+                        color: AppColors.secondaryBlue,
+                      ),
                       SizedBox(width: 4),
                       Text(
                         "${car.passengers} People",
@@ -117,17 +125,36 @@ class CarCard extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Rp $discountedPrice / day",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text:
+                                formatter.format(discountedPrice) +
+                                " / ", // misal: Rp 1.000.000 /
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                          TextSpan(
+                            text: "day",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color:
+                                  AppColors
+                                      .secondaryBlue, // warna secondary yang kamu mau
+                            ),
+                          ),
+                        ],
                       ),
                     ),
+
                     SizedBox(height: 4),
                     Text(
-                      "Rp ${car.pricePerDay}",
+                      formatter.format(car.pricePerDay),
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.grey,
