@@ -6,7 +6,8 @@
     "isManual": false,
     "passengers": 7,
     "fuelIcon": "local_gas_station",
-    "pricePerDay": 350000
+    "pricePerDay": 350000,
+    "fuelAmount": 45
   },
   {
     "name": "Jazz",
@@ -15,7 +16,8 @@
     "isManual": true,
     "passengers": 5,
     "fuelIcon": "local_gas_station",
-    "pricePerDay": 300000
+    "pricePerDay": 300000,
+    "fuelAmount": 38
   },
   {
     "name": "CX-5",
@@ -24,7 +26,8 @@
     "isManual": false,
     "passengers": 5,
     "fuelIcon": "local_gas_station",
-    "pricePerDay": 500000
+    "pricePerDay": 500000,
+    "fuelAmount": 50
   },
   {
     "name": "Fortuner",
@@ -33,7 +36,8 @@
     "isManual": true,
     "passengers": 7,
     "fuelIcon": "local_gas_station",
-    "pricePerDay": 600000
+    "pricePerDay": 600000,
+    "fuelAmount": 65
   },
   {
     "name": "Pajero",
@@ -42,7 +46,8 @@
     "isManual": false,
     "passengers": 7,
     "fuelIcon": "local_gas_station",
-    "pricePerDay": 650000
+    "pricePerDay": 650000,
+    "fuelAmount": 70
   },
   {
     "name": "Xenia",
@@ -51,7 +56,8 @@
     "isManual": true,
     "passengers": 7,
     "fuelIcon": "local_gas_station",
-    "pricePerDay": 320000
+    "pricePerDay": 320000,
+    "fuelAmount": 40
   },
   {
     "name": "Mobilio",
@@ -60,7 +66,8 @@
     "isManual": false,
     "passengers": 7,
     "fuelIcon": "local_gas_station",
-    "pricePerDay": 340000
+    "pricePerDay": 340000,
+    "fuelAmount": 42
   },
   {
     "name": "Terios",
@@ -69,7 +76,8 @@
     "isManual": true,
     "passengers": 7,
     "fuelIcon": "local_gas_station",
-    "pricePerDay": 330000
+    "pricePerDay": 330000,
+    "fuelAmount": 43
   },
   {
     "name": "Brio",
@@ -78,7 +86,8 @@
     "isManual": true,
     "passengers": 5,
     "fuelIcon": "local_gas_station",
-    "pricePerDay": 280000
+    "pricePerDay": 280000,
+    "fuelAmount": 35
   },
   {
     "name": "Xpander",
@@ -87,6 +96,7 @@
     "isManual": false,
     "passengers": 7,
     "fuelIcon": "local_gas_station",
-    "pricePerDay": 450000
+    "pricePerDay": 450000,
+    "fuelAmount": 48
   }
 ]
