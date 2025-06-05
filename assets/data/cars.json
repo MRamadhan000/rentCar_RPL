@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Avanza Veloz",
+    "brand": "Toyota",
+    "imageUrl": "https://via.placeholder.com/150?text=Avanza+Veloz",
+    "isManual": false,
+    "passengers": 7,
+    "fuelIcon": "local_gas_station",
+    "pricePerDay": 350000
+  },
+  {
+    "name": "Jazz",
+    "brand": "Honda",
+    "imageUrl": "https://via.placeholder.com/150?text=Jazz",
+    "isManual": true,
+    "passengers": 5,
+    "fuelIcon": "local_gas_station",
+    "pricePerDay": 300000
+  },
+  {
+    "name": "CX-5",
+    "brand": "Mazda",
+    "imageUrl": "https://via.placeholder.com/150?text=CX-5",
+    "isManual": false,
+    "passengers": 5,
+    "fuelIcon": "local_gas_station",
+    "pricePerDay": 500000
+  },
+  {
+    "name": "Fortuner",
+    "brand": "Toyota",
+    "imageUrl": "https://via.placeholder.com/150?text=Fortuner",
+    "isManual": true,
+    "passengers": 7,
+    "fuelIcon": "local_gas_station",
+    "pricePerDay": 600000
+  },
+  {
+    "name": "Pajero",
+    "brand": "Mitsubishi",
+    "imageUrl": "https://via.placeholder.com/150?text=Pajero",
+    "isManual": false,
+    "passengers": 7,
+    "fuelIcon": "local_gas_station",
+    "pricePerDay": 650000
+  },
+  {
+    "name": "Xenia",
+    "brand": "Daihatsu",
+    "imageUrl": "https://via.placeholder.com/150?text=Xenia",
+    "isManual": true,
+    "passengers": 7,
+    "fuelIcon": "local_gas_station",
+    "pricePerDay": 320000
+  },
+  {
+    "name": "Mobilio",
+    "brand": "Honda",
+    "imageUrl": "https://via.placeholder.com/150?text=Mobilio",
+    "isManual": false,
+    "passengers": 7,
+    "fuelIcon": "local_gas_station",
+    "pricePerDay": 340000
+  },
+  {
+    "name": "Terios",
+    "brand": "Daihatsu",
+    "imageUrl": "https://via.placeholder.com/150?text=Terios",
+    "isManual": true,
+    "passengers": 7,
+    "fuelIcon": "local_gas_station",
+    "pricePerDay": 330000
+  },
+  {
+    "name": "Brio",
+    "brand": "Honda",
+    "imageUrl": "https://via.placeholder.com/150?text=Brio",
+    "isManual": true,
+    "passengers": 5,
+    "fuelIcon": "local_gas_station",
+    "pricePerDay": 280000
+  },
+  {
+    "name": "Xpander",
+    "brand": "Mitsubishi",
+    "imageUrl": "https://via.placeholder.com/150?text=Xpander",
+    "isManual": false,
+    "passengers": 7,
+    "fuelIcon": "local_gas_station",
+    "pricePerDay": 450000
+  }
+]
