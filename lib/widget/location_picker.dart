@@ -4,6 +4,7 @@ import '../utils/app_colors.dart';
 class LocationPicker extends StatelessWidget {
   final String? location;
   final void Function(String?)? onChangeLocation;
+
   const LocationPicker({super.key, this.location, this.onChangeLocation});
 
   @override
@@ -27,6 +28,7 @@ class LocationPicker extends StatelessWidget {
 
     const double labelFontSize = 12;
     const double arrowSize = 15;
+    const double valueFontSize = 9;
 
     return Expanded(
       child: Column(
@@ -46,9 +48,7 @@ class LocationPicker extends StatelessWidget {
               final selected = await showModalBottomSheet<String>(
                 context: context,
                 shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(16),
-                  ),
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
                 ),
                 builder: (BuildContext ctx) {
                   return ListView(
@@ -75,13 +75,34 @@ class LocationPicker extends StatelessWidget {
                 onChangeLocation?.call(selected);
               }
             },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 6),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  Icon(Icons.keyboard_arrow_down, size: arrowSize),
-                ],
+            child: Container(
+              width: double.infinity,
+              padding:
+                  EdgeInsets.zero, // <--- penting! biar bener-bener 0 padding
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                  vertical: 6,
+                ), // padding vertikal ditambahkan di sini
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    // Tampilkan nama lokasi dulu
+                    Flexible(
+                      child: Text(
+                        location ?? '',
+                        style: TextStyle(
+                          fontSize: valueFontSize,
+                          color: location == null ? Colors.grey : Colors.black,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    const Icon(Icons.keyboard_arrow_down, size: arrowSize),
+                  ],
+                ),
               ),
             ),
           ),

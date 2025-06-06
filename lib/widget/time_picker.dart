@@ -17,7 +17,7 @@ class TimePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double labelFontSize = 12;
-    const double valueFontSize = 10;
+    const double valueFontSize = 9;
     const double arrowSize = 15;
 
     return Expanded(
