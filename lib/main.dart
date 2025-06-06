@@ -7,6 +7,7 @@ import './models/car.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 import './utils/app_colors.dart';
+import './widget/empty_car_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -117,10 +118,7 @@ class _CarRentalPageState extends State<CarRentalPage> {
               if (isLoading)
                 const Center(child: CircularProgressIndicator())
               else if (filteredCars.isEmpty)
-                const Text(
-                  "🚫 Mobil tidak ditemukan",
-                  style: TextStyle(fontSize: 16),
-                )
+                const EmptyCarList()
               else
                 ...filteredCars.map((car) => CarCard(car: car)).toList(),
             ],
