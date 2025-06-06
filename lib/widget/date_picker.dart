@@ -29,8 +29,8 @@ class DatePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double labelFontSize = 12;
-    const double valueFontSize = 10;
     const double arrowSize = 15;
+    const double valueFontSize = 9;
 
     return Expanded(
       child: Column(
@@ -54,7 +54,7 @@ class DatePicker extends StatelessWidget {
                   Text(
                     formatDate(date),
                     style: TextStyle(
-                      fontSize: valueFontSize - 3,
+                      fontSize: valueFontSize,
                       color: date == null ? Colors.grey.shade600 : Colors.black,
                     ),
                     overflow: TextOverflow.ellipsis,
