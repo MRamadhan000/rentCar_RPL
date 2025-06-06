@@ -38,10 +38,36 @@ class PickupSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Pick up',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 20, // ukuran container luar (outline)
+                height: 20,
+                decoration: BoxDecoration(
+                  color: Colors.blue.withOpacity(0.3), // warna outline (pudar)
+                  shape: BoxShape.circle,
+                ),
+                child: Center(
+                  child: Container(
+                    width: 10, // ukuran lingkaran dalam (isi solid)
+                    height: 10,
+                    decoration: const BoxDecoration(
+                      color: Colors.blue, // warna isi solid
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
+              ),
+
+              const SizedBox(width: 8), // jarak antara lingkaran dan tulisan
+              const Text(
+                'Pick up',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+            ],
           ),
+
           const SizedBox(height: 12),
           IntrinsicHeight(
             child: Row(
@@ -57,19 +83,13 @@ class PickupSection extends StatelessWidget {
                   width: 20,
                   color: Colors.grey,
                 ),
-                DatePicker(
-                  date: date,
-                  onPickDate: onPickDate,
-                ),
+                DatePicker(date: date, onPickDate: onPickDate),
                 const VerticalDivider(
                   thickness: 0.8,
                   width: 20,
                   color: Colors.grey,
                 ),
-                TimePicker(
-                  time: time,
-                  onPickTime: onPickTime,
-                ),
+                TimePicker(time: time, onPickTime: onPickTime),
               ],
             ),
           ),
