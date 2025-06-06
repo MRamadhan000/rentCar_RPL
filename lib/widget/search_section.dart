@@ -1,16 +1,36 @@
 import 'package:flutter/material.dart';
 
-class SearchSection extends StatelessWidget {
-  const SearchSection({super.key});
+class SearchSection extends StatefulWidget {
+  final ValueChanged<String>? onSearchChanged;
+
+  const SearchSection({super.key, this.onSearchChanged});
+
+  @override
+  State<SearchSection> createState() => _SearchSectionState();
+}
+
+class _SearchSectionState extends State<SearchSection> {
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _handleSearch(String value) {
+    if (widget.onSearchChanged != null) {
+      widget.onSearchChanged!(value);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 10),  // margin atas 20
+      margin: const EdgeInsets.only(top: 10),
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
       child: Row(
         children: [
-          // 1. Hamburger menu (fixed size)
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
@@ -19,10 +39,7 @@ class SearchSection extends StatelessWidget {
             ),
             child: const Icon(Icons.menu, size: 28),
           ),
-
           const SizedBox(width: 12),
-
-          // 2. Search (Expanded supaya lebar memenuhi sisa ruang)
           Expanded(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -31,6 +48,8 @@ class SearchSection extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: TextField(
+                controller: _searchController,
+                onChanged: _handleSearch, // atau onSubmitted
                 decoration: InputDecoration(
                   icon: const Icon(Icons.search, color: Colors.grey),
                   border: InputBorder.none,
@@ -42,10 +61,7 @@ class SearchSection extends StatelessWidget {
               ),
             ),
           ),
-
           const SizedBox(width: 12),
-
-          // 3. Filter icon (fixed size)
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(

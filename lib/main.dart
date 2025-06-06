@@ -31,12 +31,25 @@ class CarRentalPage extends StatefulWidget {
 }
 
 class _CarRentalPageState extends State<CarRentalPage> {
+  String searchText = '';
+  List<Car> cars = [];
+  bool isLoading = true;
+
   String? selectedLocation;
   DateTime? selectedDate;
   TimeOfDay? selectedTime;
 
-  List<Car> cars = [];
-  bool isLoading = true;
+  // Filter mobil berdasarkan pencarian
+  List<Car> get filteredCars {
+    if (searchText.isEmpty) return cars;
+    return cars
+        .where(
+          (car) =>
+              car.name.toLowerCase().contains(searchText.toLowerCase()) ||
+              car.brand.toLowerCase().contains(searchText.toLowerCase()),
+        )
+        .toList();
+  }
 
   @override
   void initState() {
@@ -63,14 +76,23 @@ class _CarRentalPageState extends State<CarRentalPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SearchSection(),
+              // 🔍 Search
+              SearchSection(
+                onSearchChanged: (val) {
+                  setState(() {
+                    searchText = val;
+                  });
+                },
+              ),
+
               const SizedBox(height: 20),
+
+              // 📍 Lokasi & Waktu Penjemputan
               PickupSection(
                 location: selectedLocation,
                 date: selectedDate,
                 time: selectedTime,
-                onChangeLocation:
-                    (val) => setState(() => selectedLocation = val),
+                onChangeLocation: (val) => setState(() => selectedLocation = val),
                 onPickDate: () async {
                   final picked = await showDatePicker(
                     context: context,
@@ -91,11 +113,16 @@ class _CarRentalPageState extends State<CarRentalPage> {
 
               const SizedBox(height: 20),
 
-              // ⏳ Tampilkan loading saat data belum siap
+              // 🚗 List mobil
               if (isLoading)
-                Center(child: CircularProgressIndicator())
+                const Center(child: CircularProgressIndicator())
+              else if (filteredCars.isEmpty)
+                const Text(
+                  "🚫 Mobil tidak ditemukan",
+                  style: TextStyle(fontSize: 16),
+                )
               else
-                ...cars.map((car) => CarCard(car: car)).toList(),
+                ...filteredCars.map((car) => CarCard(car: car)).toList(),
             ],
           ),
         ),
