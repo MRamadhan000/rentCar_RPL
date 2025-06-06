@@ -28,7 +28,7 @@ class DatePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double labelFontSize = 12;
+    const double labelFontSize = 16;
     const double arrowSize = 15;
     const double valueFontSize = 9;
 
